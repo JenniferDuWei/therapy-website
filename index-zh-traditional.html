@@ -27,20 +27,25 @@
   <header>
     <h1>杜薇</h1>
     <p class="subtitle">心理諮詢與心理治療</p>
+    <div class="header-cta">
+      <a href="#contact" class="cta-button">電郵聯繫我</a>
+      <a href="mailto:jennifer.wei.du@gmail.com" class="cta-button secondary">優惠諮詢</a>
+    </div>
   </header>
 
-  <div class="tabs-container">
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="welcome">歡迎</button>
-      <button class="tab-btn" data-tab="about-me">關於我</button>
-      <button class="tab-btn" data-tab="fees-and-locations">費用與地點</button>
-      <button class="tab-btn" data-tab="testimonials">評價</button>
-      <button class="tab-btn" data-tab="faq">常見問題</button>
-      <button class="tab-btn" data-tab="contact">聯絡方式</button>
-    </div>
+  <nav class="nav-menu">
+    <a href="#welcome" class="nav-link">歡迎</a>
+    <a href="#about-me" class="nav-link">關於我</a>
+    <a href="#fees-and-locations" class="nav-link">費用與地點</a>
+    <a href="#testimonials" class="nav-link">評價</a>
+    <a href="#faq" class="nav-link">常見問題</a>
+    <a href="#contact" class="nav-link">聯絡方式</a>
+  </nav>
+
+  <div class="content-container">
 
     <main>
-      <section id="welcome" class="tab-content active">
+      <section id="welcome" class="content-section">
         <h2>歡迎</h2>
         <img src="profile.jpg" alt="杜薇" class="profile-pic">
         <p>
@@ -74,7 +79,7 @@
 
       </section>
 
-      <section id="about-me" class="tab-content">
+      <section id="about-me" class="content-section">
         <h2>關於我</h2>
         <p>
           我提供一個溫暖、專注的關係，我們可以一起處理你帶來的困難。許多人尋求心理治療是因為他們生活中有些事不順利，或者因為他們感到被卡在他們自己無法改變的方式中。我認真對待這些關切，並將心理治療視為真正改變可以發生的地方。
@@ -136,7 +141,7 @@
           Fleet心理諮詢</p>
       </section>
 
-      <section id="fees-and-locations" class="tab-content">
+      <section id="fees-and-locations" class="content-section">
         <h2>費用與地點</h2>
         <p>
           費用 – 每50分鐘課程<br>
@@ -151,7 +156,7 @@
         </p>
       </section>
 
-      <section id="testimonials" class="tab-content">
+      <section id="testimonials" class="content-section">
         <h2>評價</h2>
         
         <div class="testimonial">
@@ -180,7 +185,7 @@
         <p><i>*真實名字未使用。</i></p>
       </section>
 
-      <section id="faq" class="tab-content">
+      <section id="faq" class="content-section">
         <h2>常見問題</h2>
         
         <div class="faq-toc">
@@ -253,33 +258,140 @@
         </div>
       </section>
 
-      <section id="contact" class="tab-content">
+      <section id="contact" class="content-section">
         <h2>聯絡方式</h2>
+        <p>
+          我會在週一至週五24小時內回覆所有訊息。您可以使用下面的表格聯絡我，或直接透過：
+        </p>
         <p>
           電郵: <a href="mailto:jennifer.wei.du@gmail.com">jennifer.wei.du@gmail.com</a><br>
           短信: 07840 232 467<br>
-          地點: 倫敦 W9 / W5 / 線上
+          地點: 倫敦 W2 / W9 / 線上
         </p>
+
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="from_name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">電子郵箱</label>
+            <input type="email" id="email" name="reply_to" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">電話號碼（選填）</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">主題</label>
+            <input type="text" id="subject" name="subject" required>
+          </div>
+
+          <div class="form-group">
+            <label for="message">留言</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <div id="form-status" style="margin-bottom: 1rem; display: none;"></div>
+          <button type="submit" class="cta-button">發送留言</button>
+        </form>
       </section>
     </main>
   </div>
 
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Initialize EmailJS with your Public Key
+    (function() {
+      emailjs.init('ZBBN6ocQsF8cP-w-a');
+    })();
+  </script>
+
   <script>
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const tabName = button.getAttribute('data-tab');
-
-        // Remove active class from all buttons and contents
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        tabContents.forEach(content => content.classList.remove('active'));
-
-        // Add active class to clicked button and corresponding content
-        button.classList.add('active');
-        document.getElementById(tabName).classList.add('active');
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const navHeight = document.querySelector('.nav-menu').offsetHeight;
+            const targetPosition = target.offsetTop - navHeight - 20;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
       });
+    });
+
+    // Highlight active section in navigation
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.content-section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const navHeight = document.querySelector('.nav-menu').offsetHeight;
+      
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - navHeight - 100;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // EmailJS Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const form = this;
+      const submitButton = form.querySelector('button[type="submit"]');
+      const statusDiv = document.getElementById('form-status');
+      
+      // Disable button and show loading state
+      submitButton.disabled = true;
+      submitButton.textContent = '發送中...';
+      statusDiv.style.display = 'block';
+      statusDiv.textContent = '正在發送您的留言...';
+      statusDiv.style.color = '#8b7a68';
+      
+      // Send email to therapist
+      emailjs.sendForm('service_xo0xs3j', 'template_302obkv', form)
+        .then(function() {
+          // Send auto-reply to client
+          return emailjs.sendForm('service_xo0xs3j', 'template_dsh8y9r', form);
+        })
+        .then(function() {
+          statusDiv.textContent = '留言發送成功！我會儘快回覆您。';
+          statusDiv.style.color = '#4a9b5c';
+          form.reset();
+          
+          // Reset button after 3 seconds
+          setTimeout(function() {
+            submitButton.disabled = false;
+            submitButton.textContent = '發送留言';
+            statusDiv.style.display = 'none';
+          }, 3000);
+        }, function(error) {
+          statusDiv.textContent = '發送失敗。請直接發送電子郵件。';
+          statusDiv.style.color = '#c74444';
+          submitButton.disabled = false;
+          submitButton.textContent = '發送留言';
+          console.error('EmailJS error:', error);
+        });
     });
   </script>
 

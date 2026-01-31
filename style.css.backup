@@ -8,10 +8,6 @@ body {
   font-size: 16px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 .language-selector {
   display: flex;
   justify-content: center;
@@ -40,9 +36,9 @@ html {
 }
 
 .lang-btn.active {
-  background-color: #8b7a68;
+  background-color: #2b2b2b;
   color: #ffffff;
-  border-color: #8b7a68;
+  border-color: #2b2b2b;
 }
 
 header {
@@ -71,33 +67,7 @@ header > * {
 }
 
 h1 {
-  margin: 0 0 1rem 0;
-  font-size: 3rem;
-  font-weight: 300;
-  letter-spacing: 1px;
-  color: #ffffff;
-}
-
-.subtitle {
-  margin-top: 0.5rem;
-  font-size: 1.4rem;
-  color: #ffffff;
-  font-weight: 300;
-  margin-bottom: 2rem;
-}
-
-.header-cta {
-  margin-top: 2rem;
-}
-
-.content-container {
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 0;
+  margin;
   padding: 0;
   border-bottom: none;
   flex-wrap: wrap;
@@ -109,7 +79,7 @@ h1 {
   z-index: 100;
 }
 
-.nav-link {
+.tab-btn {
   padding: 1.2rem 1.5rem;
   background-color: transparent;
   border: none;
@@ -119,51 +89,65 @@ h1 {
   font-weight: 600;
   transition: all 0.3s ease;
   white-space: nowrap;
+  flex-shrink: 1;
   border-bottom: 3px solid transparent;
   letter-spacing: 0.5px;
-  text-decoration: none;
-  display: inline-block;
 }
 
-.nav-link:hover {
+.tab-btn:hover {
   color: #8b7a68;
   background-color: #fafaf8;
-  text-decoration: none;
 }
 
-.nav-link.active {
-  color: #8b7a68;
-  border-bottom-color: #8b7a68;
-  background-color: #fafaf8;
-}
-
-main {
-  padding: 3rem 2rem;
+.tab-btn.active {
+  color: #83rem 2rem;
   max-width: 900px;
   margin: 0 auto;
 }
 
-section.content-section {
-  display: block;
+section.tab-content {
+  display: none;
   margin-bottom: 3rem;
   background-color: #ffffff;
   padding: 3rem;
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  scroll-margin-top: 80px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+section.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
 }
 
-h2 {
-  font-size: 2.2rem;
+.tab-btn:hover {
+  color: #2b2b2b;
+  background-color: #f9f9f9;
+}
+
+.tab-btn.active {
+  color: #3a6f7d;
+  border-bottom-color: #3a6f7d;
+}
+
+main {
+  padding: 2rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+section.tab-content {
+  display: none;
+  margin-bottom: 2.5rem;
+}
+
+section.tab-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fa2.2rem;
   font-weight: 300;
   margin-bottom: 1.5rem;
   color: #8b7a68;
@@ -177,7 +161,17 @@ section h3 {
   font-weight: 400;
   color: #8b7a68;
   margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+section h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 section h4 {
@@ -186,12 +180,6 @@ section h4 {
   color: #2b2b2b;
   margin-bottom: 0.4rem;
   margin-top: 0;
-}
-
-section p {
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1.2rem;
 }
 
 .therapy-options {
@@ -220,71 +208,50 @@ section p {
 }
 
 .testimonial {
-  border-left: 4px solid #8b7a68;
+  border-left: 4px solid #3a6f7d;
   padding-left: 1.5rem;
   margin: 1.5rem 0;
-  background-color: #fafaf8;
-  padding: 2rem;
-  border-radius: 4px;
 }
 
 .testimonial p {
-  font-size: 1rem;
-  margin: 1rem 0;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  margin: 0.8rem 0;
+  line-height: 1.5;
 }
 
 .testimonial-permission {
   font-style: italic;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
-  font-size: 0.9rem;
 }
 
 .testimonial-attribution {
   font-weight: 600;
-  font-size: 0.95rem;
-  color: #8b7a68;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .work-areas {
   list-style: none;
   padding: 0;
-  margin: 1.5rem 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 0.5rem;
+  margin: 0.5rem 0 1rem 0;
 }
 
 .work-areas li {
   padding-left: 1.5rem;
-  margin-bottom: 0.4rem;
-  position: relative;
-  font-size: 0.95rem;
-}
-
-.work-areas li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #8b7a68;
-  font-size: 1.2rem;
-}
-
-.profile-pic {
-  max-width: 280px;
+  margin-botto80px;
   width: 280px;
   height: 280px;
   border-radius: 8px;
   float: right;
   margin: 0 0 2rem 2rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  object-fit: cover;
-  object-position: center 30%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #3a6f7d;
 }
-
-a {
-  color: #8b7a68;
+8b7a68;
   text-decoration: none;
   font-weight: 500;
 }
@@ -300,11 +267,12 @@ a:hover {
   color: #ffffff;
   padding: 1rem 2.5rem;
   border-radius: 50px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  margin: 1rem 0.5rem;
+  font-size2.5rem;
+  font-size: 0.9rem;
+  color: #888;
+  border-top: none;
+  background-color: #8b7a68;
+  color: rgba(255, 255, 255, 0.8)
   box-shadow: 0 4px 12px rgba(139, 122, 104, 0.3);
   letter-spacing: 0.5px;
 }
@@ -324,22 +292,36 @@ a:hover {
 
 .cta-button.secondary:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  transform: translateY(-2px)
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+a {
+  color: #3a6f7d;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 footer {
   text-align: center;
-  padding: 2.5rem;
+  padding: 1.5rem;
   font-size: 0.9rem;
-  border-top: none;
-  background-color: #8b7a68;
-  color: rgba(255, 255, 255, 0.8);
+  color: #777;
+  border-top: 1px solid #e0e0e0;
+  background-color: #ffffff;
 }
 
 .faq-item {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #e5ddd5;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .faq-item:last-child {
@@ -347,33 +329,30 @@ footer {
 }
 
 .faq-item h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #8b7a68;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 0.5rem;
   margin-top: 0;
 }
 
 .faq-item p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 0;
-  line-height: 1.8;
 }
 
 .faq-toc {
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 4px;
   margin-bottom: 2rem;
-  background-color: #fafaf8;
-  border-left: 4px solid #8b7a68;
 }
 
 .faq-toc h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   margin-top: 0;
-  margin-bottom: 1rem;
-  color: #8b7a68;
+  margin-bottom: 0.75rem;
+  color: #2b2b2b;
 }
 
 .faq-toc ul {
@@ -383,115 +362,15 @@ footer {
 }
 
 .faq-toc li {
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
 }
 
 .faq-toc a {
-  color: #8b7a68;
+  color: #3a6f7d;
   text-decoration: none;
 }
 
 .faq-toc a:hover {
   text-decoration: underline;
-  color: #6d5e50;
-}
-
-/* Contact Form Styles */
-.contact-form {
-  max-width: 600px;
-  margin: 2rem auto;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #3d3d3d;
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e5ddd5;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: border-color 0.3s ease;
-  box-sizing: border-box;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #8b7a68;
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.contact-form .cta-button {
-  margin: 1rem 0;
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-  header {
-    padding: 4rem 1.5rem 3rem 1.5rem;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-  }
-
-  .subtitle {
-    font-size: 1.1rem;
-  }
-
-  .cta-button {
-    display: block;
-    margin: 0.5rem auto;
-    width: 80%;
-    text-align: center;
-  }
-
-  section.tab-content {
-    padding: 2rem 1.5rem;
-  }
-
-  .profile-pic {
-    float: none;
-    display: block;
-    margin: 0 auto 2rem auto;
-    max-width: 200px;
-    width: 200px;
-    height: 200px;
-  }
-
-  .work-areas {
-    grid-template-columns: 1fr;
-  }
-
-  main {
-    padding: 2rem 1rem;
-  }
-
-  h2 {
-    font-size: 1.8rem;
-  }
-
-  section h3 {
-    font-size: 1.2rem;
-  }
 }
