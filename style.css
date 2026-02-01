@@ -628,18 +628,39 @@ section p {
   padding: 0;
   margin: 1.5rem 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 0.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem 0.75rem;
 }
 
 .work-areas li {
   padding-left: 1.5rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0;
   position: relative;
   font-size: 0.95rem;
 }
 
 .work-areas li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #8b7a68;
+  font-size: 1.2rem;
+}
+
+.qualifications-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.qualifications-list li {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+  position: relative;
+  font-size: 0.95rem;
+}
+
+.qualifications-list li:before {
   content: "•";
   position: absolute;
   left: 0;
@@ -712,6 +733,35 @@ footer {
   color: rgba(255, 255, 255, 0.8);
 }
 
+.footer-sitemap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-sitemap a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer-sitemap a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .footer-sitemap {
+    gap: 1rem;
+  }
+  
+  .footer-sitemap a {
+    font-size: 0.9rem;
+  }
+}
+
 .faq-item {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
@@ -775,12 +825,30 @@ footer {
 
 /* Contact Form Styles */
 .contact-form {
-  max-width: 600px;
+  max-width: 800px;
   margin: 2rem auto;
+}
+
+@media (min-width: 769px) {
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-form .form-group:nth-child(5) {
+    grid-column: 1 / -1;
+  }
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  .form-group {
+    margin-bottom: 0;
+  }
 }
 
 .form-group label {
@@ -815,10 +883,19 @@ footer {
 }
 
 .contact-form .cta-button {
-  margin: 1rem 0;
+  margin: 1rem auto;
   cursor: pointer;
   border: none;
   font-family: inherit;
+  display: block;
+}
+
+@media (min-width: 769px) {
+  .contact-form .cta-button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin: 1rem 0;
+  }
 }
 
 /* Responsive styles */
