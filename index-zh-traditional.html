@@ -21,7 +21,11 @@
   <div class="language-selector">
     <a href="index.html" class="lang-btn">English</a>
     <a href="index-zh-simplified.html" class="lang-btn">简体中文</a>
-    <a href="index-zh-traditional.html" class="lang-btn active">繁體中文</a>
+    <button class="hamburger" aria-label="菜單">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 
   <header>
@@ -41,6 +45,8 @@
     <a href="#faq" class="nav-link">常見問題</a>
     <a href="#contact" class="nav-link">聯絡方式</a>
   </nav>
+
+  <div class="menu-overlay"></div>
 
   <div class="content-container">
 
@@ -351,199 +357,6 @@
   </div>
 
   <script src="scripts/main.js"></script>
-
-  <footer>
-    <p>
-      &copy; 杜薇 • 認證諮詢師/心理治療師
-    </p>
-  </footer>
-</body>
-</html>
-              top: targetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }
-      });
-    });
-
-    // Testimonial toggle functionality
-    document.querySelectorAll('.testimonial-toggle').forEach(button => {
-      button.addEventListener('click', function() {
-        const testimonial = this.closest('.testimonial');
-        const snapshot = testimonial.querySelector('.testimonial-snapshot');
-        const fullContent = testimonial.querySelector('.testimonial-full');
-        
-        if (fullContent.style.display === 'none') {
-          // Show full content, hide snapshot
-          snapshot.style.display = 'none';
-          fullContent.style.display = 'block';
-          this.textContent = '收起';
-        } else {
-          // Show snapshot, hide full content
-          snapshot.style.display = 'block';
-          fullContent.style.display = 'none';
-          this.textContent = '閱讀完整故事';
-        }
-      });
-    });
-
-    // Testimonial carousel functionality
-    const container = document.querySelector('.testimonials-container');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    const indicators = document.querySelectorAll('.indicator');
-    
-    if (container && prevBtn && nextBtn) {
-      let currentIndex = 0;
-      const testimonials = container.querySelectorAll('.testimonial');
-      
-      function updateButtonVisibility() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === testimonials.length - 1;
-      }
-      
-      function scrollToTestimonial(index) {
-        if (testimonials[index]) {
-          testimonials[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-          currentIndex = index;
-          updateIndicators();
-          updateButtonVisibility();
-        }
-      }
-      
-      function updateIndicators() {
-        indicators.forEach((indicator, idx) => {
-          indicator.classList.toggle('active', idx === currentIndex);
-        });
-      }
-      
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          scrollToTestimonial(currentIndex - 1);
-        }
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        if (currentIndex < testimonials.length - 1) {
-          scrollToTestimonial(currentIndex + 1);
-        }
-      });
-      
-      indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-          scrollToTestimonial(index);
-        });
-      });
-      
-      // Update current index on scroll
-      container.addEventListener('scroll', () => {
-        const scrollLeft = container.scrollLeft;
-        const containerWidth = container.offsetWidth;
-        
-        testimonials.forEach((testimonial, index) => {
-          const testimonialLeft = testimonial.offsetLeft - container.offsetLeft;
-          if (Math.abs(scrollLeft - testimonialLeft) < containerWidth / 2) {
-            if (currentIndex !== index) {
-              currentIndex = index;
-              updateIndicators();
-              updateButtonVisibility();
-            }
-          }
-        });
-      });
-      
-      // Initialize button visibility
-      updateButtonVisibility();
-    }
-
-    // Highlight active section in navigation
-    window.addEventListener('scroll', () => {
-      const sections = document.querySelectorAll('.content-section');
-      const navLinks = document.querySelectorAll('.nav-link');
-      const navHeight = document.querySelector('.nav-menu').offsetHeight;
-      
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - navHeight - 100;
-        if (window.pageYOffset >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Google Apps Script Form Submission with Countdown
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      
-      const form = this;
-      const submitButton = form.querySelector('button[type="submit"]');
-      const statusDiv = document.getElementById('form-status');
-      
-      // Disable button and show countdown
-      submitButton.disabled = true;
-      submitButton.textContent = '發送中...';
-      statusDiv.style.display = 'block';
-      statusDiv.style.color = '#8b7a68';
-      
-      let countdown = 3;
-      statusDiv.textContent = '正在發送您的留言... ' + countdown;
-      
-      const countdownInterval = setInterval(function() {
-        countdown--;
-        if (countdown >= 0) {
-          statusDiv.textContent = '正在發送您的留言... ' + countdown;
-        }
-      }, 1000);
-      
-      // Collect form data
-      const formData = {
-        from_name: form.querySelector('[name="from_name"]').value,
-        reply_to: form.querySelector('[name="reply_to"]').value,
-        phone: form.querySelector('[name="phone"]').value,
-        subject: form.querySelector('[name="subject"]').value,
-        message: form.querySelector('[name="message"]').value
-      };
-      
-      // Send to Google Apps Script
-      fetch('https://script.google.com/macros/s/AKfycbyFJsHWzGDmfCUakE-hE5N_-zziuCUhI75VdCnIbI4whR8BgRADSjXJUoxuqgZB7vfQuA/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(function() {
-        clearInterval(countdownInterval);
-        statusDiv.textContent = '已發送！我會儘快回覆您。';
-        statusDiv.style.color = '#4a9b5c';
-        form.reset();
-        
-        // Reset button after 3 seconds
-        setTimeout(function() {
-          submitButton.disabled = false;
-          submitButton.textContent = '發送留言';
-          statusDiv.style.display = 'none';
-        }, 3000);
-      })
-      .catch(function(error) {
-        clearInterval(countdownInterval);
-        statusDiv.textContent = '發送失敗。請直接發送電子郵件。';
-        statusDiv.style.color = '#c74444';
-        submitButton.disabled = false;
-        submitButton.textContent = '發送留言';
-        console.error('Error:', error);
-      });
-    });
-  </script>
 
   <footer>
     <p>
