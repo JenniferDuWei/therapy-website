@@ -75,7 +75,7 @@ function sendAutoReply(data) {
       `UKCP和BACP认证心理治疗师\n\n` +
       `电邮：jennifer.wei.du@gmail.com\n` +
       `短信：+44 (0) 7840 232 467\n` +
-      `地点：Bayswater (W2)、Maida Vale (W9)、在线`;
+      `地点：Maida Vale (W9)、在线`;
   } else if (language === 'zh-Hant') {
     // Traditional Chinese
     subject = "感謝您的諮詢 - 杜薇心理治療";
@@ -90,7 +90,7 @@ function sendAutoReply(data) {
       `UKCP和BACP認證心理治療師\n\n` +
       `電郵：jennifer.wei.du@gmail.com\n` +
       `短信：+44 (0) 7840 232 467\n` +
-      `地點：Bayswater (W2)、Maida Vale (W9)、線上`;
+      `地點：Maida Vale (W9)、線上`;
   } else {
     // English (default)
     subject = "Thank you for your inquiry - Jennifer Wei Du Psychotherapy";
@@ -105,7 +105,7 @@ function sendAutoReply(data) {
       `UKCP & BACP Registered Psychotherapist\n\n` +
       `Email: jennifer.wei.du@gmail.com\n` +
       `Text: 07840 232 467\n` +
-      `Locations: Bayswater (W2), Maida Vale (W9), Online`;
+      `Locations: Maida Vale (W9), Online`;
   }
   
   GmailApp.sendEmail(data.reply_to, subject, body);
